@@ -1,0 +1,26 @@
+[33mcommit 294a3aa2527a5e38add7087502c4556b415e1711[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;33mtag: [m[1;33mempezando[m[33m)[m
+Author: noxx <kevinmarcano0921@gmail.com>
+Date:   Wed Dec 20 10:15:06 2023 -0400
+
+    Actualizaciones 1
+
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ff48367[m
+[1m--- /dev/null[m
+[1m+++ b/.gitignore[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32m**/.[m
+\ No newline at end of file[m
+[1mdiff --git a/main.cpp b/main.cpp[m
+[1mindex 03fd5e7..83a4281 100644[m
+[1m--- a/main.cpp[m
+[1m+++ b/main.cpp[m
+[36m@@ -34,7 +34,6 @@[m [mint main() {[m
+ 	float cx=100,cy=100;[m
+ 	float vx,vy;[m
+ 	float combustible = 100;[m
+[31m-	//hola[m
+ 	[m
+ 	while (!key[KEY_ESC]) {[m
+ 		bool gastarCombustible = false;  [m
