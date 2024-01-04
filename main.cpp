@@ -8,13 +8,15 @@ void caidaNave(float&,float&,float&,float&);//Para crear la caida de la nave
 void rotar(float&,float&,float,float,float);
 void aceleracion(float,float&,float&);//Acelera hacia arriba, der o izq
 void pintarFuego(float,float,float,BITMAP*);//Crea el propulsor
-void medidorCombustible(bool,float&,BITMAP*);//Crea barra de combustible
-void crearNivel(int,BITMAP*);//Crea los niveles
-void colision(float,float,BITMAP*,int);//Hace la colision
-bool gameOver(float,float,BITMAP*,int);//Game over
-bool aterrizar(float,float,float,float,BITMAP*,int);//Funcion para aterrizar
+void medidorCombustible(bool,float&,BITMAP*,bool);//Crea barra de combustible
+void crearNivel(int,BITMAP*,bool);//Crea los niveles
+void colision(float,float,BITMAP*,int,bool);//Hace la colision
+bool gameOver(float,float,BITMAP*,int,bool);//Game over
+bool aterrizar(float,float,float,float,BITMAP*,int,bool);//Funcion para aterrizar
 bool choque(float,float,float,float,float,float,float,float);
 bool choqueNave(int,float,float);
+
+
 
 
 
@@ -40,18 +42,23 @@ int main() {
 	install_keyboard();//Para poder usar el teclado
 	install_mouse();
 	
-	float cx=80,cy=30;
+	float cx=60,cy=217;
 	float vx,vy;
+	bool iniciar = false;
 	float combustible = 100;
-	int numNivel = 2;
+	int numNivel = 1;
 	
-	while (!key[KEY_ESC] && !gameOver(cx,cy,buffer,numNivel) && !aterrizar(cx,cy,vx,vy,buffer,numNivel)){
+	while (!key[KEY_ESC] && !gameOver(cx,cy,buffer,numNivel,iniciar) && !aterrizar(cx,cy,vx,vy,buffer,numNivel,iniciar)){
 		bool gastarCombustible = false;  
 		  
 		clear_to_color(buffer,0x000000);
-		crearNivel(numNivel, buffer);
-		caidaNave(cx,cy,vx,vy);
-		
+		crearNivel(numNivel,buffer,iniciar);
+		if(key[KEY_SPACE]){//Esto inicia el juego si se le da al espacio
+						   iniciar = true;
+						   }				   
+		switch(iniciar){
+							   case true:caidaNave(cx,cy,vx,vy);
+							   }
 		
 		if(key[KEY_UP]&&combustible > 0){
 					aceleracion(0,vx,vy);
@@ -70,7 +77,7 @@ int main() {
 						   }
 						   
 						         
-       medidorCombustible(gastarCombustible,combustible,buffer);
+       medidorCombustible(gastarCombustible,combustible,buffer,iniciar);
        pintarNave(cx,cy,buffer);
 	   blit(buffer, screen,0,0,0,0,740,500);
   		rest(10);//Hace un reset para que no se llene la memoria				   
@@ -131,7 +138,8 @@ void aceleracion(float da, float &vx, float &vy){
 	 float ax = 0, ay = -0.15;
 	 rotar(ax,ay,0,0,da);
 	 vx += ax;
-	 vy += ay;
+ 	 vy += ay;
+				 
 	 }
 void pintarFuego(float da,float cx,float cy,BITMAP *buffer){
 	 float c1;
@@ -147,15 +155,24 @@ void pintarFuego(float da,float cx,float cy,BITMAP *buffer){
 	 		 line(buffer, fire[i],fire[i+1],fire[i+2],fire[i+3],0xFF5733);
 			 }
 	 }
-void medidorCombustible(bool gastarCombustible,float &combustible,BITMAP *buffer){
+void medidorCombustible(bool gastarCombustible,float &combustible,BITMAP *buffer,bool iniciar){
 	 textout_centre_ex(buffer,font,"Combustible",100,30,0xFFFFFF,0x000000);
 	 rectfill(buffer,50,50,50+combustible,55,0xFFFFFF);
-	 if(gastarCombustible == true) combustible -= 0.2;
+	 if(iniciar == true){
+	 			if(gastarCombustible == true) combustible -= 0.2;
+				 }
 	 }
 	 
-void crearNivel(int numLevel,BITMAP *buffer){
+void crearNivel(int numLevel,BITMAP *buffer,bool iniciar){
 	 if(numLevel == 1){
-	 			 rectfill(buffer,10,450,100,500,0x999999);
+	 			 rectfill(buffer,610,450,705,500,0x999999);
+	 			 textout_centre_ex(buffer,font,"TUTORIAL 0",350,30,0xFFFFFF,0x000000);
+	 			 textout_centre_ex(buffer,font,"Tienes que aterrizar con suavidad en la plataforma",200,60,0x999999,0x000000);
+				 textout_centre_ex(buffer,font,"antes de que se acabe el combustible.",150,70,0x999999,0x000000);
+				 if(iniciar == false){
+				 			rectfill(buffer,10,250,100,240,0x999999);textout_centre_ex(buffer,font,"PRESIONA ESCAPE PARA INICIAR EL NIVEL",200,80,0xFFFFFF,0x000000);
+				 			
+							 }
 				 }
 	 if(numLevel == 2){
 	 			 triangle(buffer, 400,500,300,500,300,200,0x999999);
@@ -167,7 +184,7 @@ void crearNivel(int numLevel,BITMAP *buffer){
 				 }
 	 }
 	 
-void colision(float cx,float cy,BITMAP *buffer,int numLevel){
+void colision(float cx,float cy,BITMAP *buffer,int numLevel,bool iniciar){
 	 float x[12] = {cx-10,cx+10,cx,cx,cx+15,cx-15,cx+5,cx-10,cx+10,cx-5,cx-10,cx+10};
 	 float y[12] = {cy,cy,cy-15,cy+15,cy-15,cy+15,cy+5,cy-10,cy-10,cy+10,cy,cy,};
 	 float mx[6] = {7, 7,0,-7,-7,0}; 
@@ -176,7 +193,7 @@ void colision(float cx,float cy,BITMAP *buffer,int numLevel){
 	 clear(screen);
 	 do{
 		clear(buffer);
-		crearNivel(numLevel,buffer);
+		crearNivel(numLevel,buffer,iniciar);
 		int j = 0;
 		
 		for(int i = 0; i<=10;i+=2){
@@ -194,24 +211,24 @@ void colision(float cx,float cy,BITMAP *buffer,int numLevel){
 		}while(!key[KEY_ESC]);
 	 }
 	 
-bool gameOver(float cx,float cy,BITMAP *buffer,int numLevel){
+bool gameOver(float cx,float cy,BITMAP *buffer,int numLevel,bool iniciar){
 	 if(cx+20 >= 740 || cx-20 <= 0 || cy-15 <= 0 || cy+20 >= 500){
-	 		  colision(cx,cy,buffer,numLevel);
+	 		  colision(cx,cy,buffer,numLevel,iniciar);
 	 		  return true;
 			  }
 			  
 	if(choqueNave(numLevel,cx,cy) == true){
-							  colision(cx,cy,buffer,numLevel);
+							  colision(cx,cy,buffer,numLevel,iniciar);
 							  return true;
 							  }		  		  
 	 return false;
 	 }
-bool aterrizar(float cx,float cy,float vx,float vy,BITMAP *buffer,int numLevel){
-	 if(cy+20 >= 450 && cx-20 >=10 && cx+20 <=100){
+bool aterrizar(float cx,float cy,float vx,float vy,BITMAP *buffer,int numLevel,bool iniciar){
+	 if(cy+20 >= 450 && cx-20 >= 610 && cx+20 <=710){
 	 		  if(vy <= 4.7){
 			  		return true;
 					}else {
-						  colision(cx,cy,buffer,numLevel);
+						  colision(cx,cy,buffer,numLevel,iniciar);
 						  }
 			  }
 	 return false;
@@ -251,6 +268,9 @@ bool choqueNave(int numLevel,float cx,float cy){
 	 			 if(choque(110,100,300,500,r1x,r1y,r2x,r2y) == true){
 				 	return true;										
 					 }
+				 if(choque(400,500,300,500,r1x,r1y,r2x,r2y) == true){
+				 	return true;										
+					 }	 
 				  }
 	 return false;
 	 }
