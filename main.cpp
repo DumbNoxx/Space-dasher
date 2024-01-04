@@ -13,8 +13,8 @@ void crearNivel(int,BITMAP*,bool);//Crea los niveles
 void colision(float,float,BITMAP*,int,bool);//Hace la colision
 bool gameOver(float,float,BITMAP*,int,bool);//Game over
 bool aterrizar(float,float,float,float,BITMAP*,int,bool);//Funcion para aterrizar
-bool choque(float,float,float,float,float,float,float,float);
-bool choqueNave(int,float,float);
+bool choque(float,float,float,float,float,float,float,float);//Hace la que la nave choque con los obstaculos
+bool choqueNave(int,float,float);//Hace que la nave choque
 
 
 
@@ -170,7 +170,7 @@ void crearNivel(int numLevel,BITMAP *buffer,bool iniciar){
 	 			 textout_centre_ex(buffer,font,"Tienes que aterrizar con suavidad en la plataforma",200,60,0x999999,0x000000);
 				 textout_centre_ex(buffer,font,"antes de que se acabe el combustible.",150,70,0x999999,0x000000);
 				 if(iniciar == false){
-				 			rectfill(buffer,10,250,100,240,0x999999);textout_centre_ex(buffer,font,"PRESIONA ESCAPE PARA INICIAR EL NIVEL",200,80,0xFFFFFF,0x000000);
+				 			rectfill(buffer,10,250,100,240,0x999999);textout_centre_ex(buffer,font,"PRESIONA ESPACIO PARA INICIAR EL NIVEL",200,80,0xFFFFFF,0x000000);
 				 			
 							 }
 				 }
