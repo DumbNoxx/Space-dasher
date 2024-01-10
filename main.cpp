@@ -53,6 +53,11 @@ int main() {
 		  
 		clear_to_color(buffer,0x000000);
 		crearNivel(numNivel,buffer,iniciar);
+		
+		if(key[KEY_ESC]){//Esto intenta de finalizar el juego(hay que probarlo en otra pc)
+						 exit(-1);
+						 }
+		
 		if(key[KEY_SPACE]){//Esto inicia el juego si se le da al espacio
 						   iniciar = true;
 						   }				   
@@ -164,23 +169,37 @@ void medidorCombustible(bool gastarCombustible,float &combustible,BITMAP *buffer
 	 }
 	 
 void crearNivel(int numLevel,BITMAP *buffer,bool iniciar){
-	 if(numLevel == 1){
+	 if(numLevel == 0){
 	 			 rectfill(buffer,610,450,705,500,0x999999);
 	 			 textout_centre_ex(buffer,font,"TUTORIAL 0",350,30,0xFFFFFF,0x000000);
 	 			 textout_centre_ex(buffer,font,"Tienes que aterrizar con suavidad en la plataforma",200,60,0x999999,0x000000);
 				 textout_centre_ex(buffer,font,"antes de que se acabe el combustible.",150,70,0x999999,0x000000);
 				 if(iniciar == false){
 				 			rectfill(buffer,10,250,100,240,0x999999);textout_centre_ex(buffer,font,"PRESIONA ESPACIO PARA INICIAR EL NIVEL",200,80,0xFFFFFF,0x000000);
-				 			
-							 }
+							 }			 
 				 }
-	 if(numLevel == 2){
-	 			 triangle(buffer, 400,500,300,500,300,200,0x999999);
-	 			 triangle(buffer, 300,0,500,0,500,400,0x999999);
-	 			 triangle(buffer, 620,500,700,500,620,300,0x999999);
-	 			 triangle(buffer, 110,100,300,500,110,500,0x999999);
+	 if(numLevel == 1){
+	 			 textout_centre_ex(buffer,font,"TUTORIAL 1",350,30,0xFFFFFF,0x000000);
+	 			 textout_centre_ex(buffer,font,"Esquiva los obstaculos",500,60,0xE7F3F1,0x000000);textout_centre_ex(buffer,font, "y aterriza con suavidad en la plataforma",550,70,0xE7F3F1,0x000000);
+				 textout_centre_ex(buffer,font,"antes de que se acabe el combustible.",550,80,0xE7F3F1,0x000000);
+
 	 			 
-				  rectfill(buffer,10,450,100,500,0x999999);
+	 			 
+	 			 //Obstaculos abajo
+	 			 triangle(buffer, 110,100,300,500,110,500,0x999999);
+	 			 triangle(buffer, 620,500,700,500,620,300,0x999999);
+	 			 triangle(buffer, 500,700,900,700,620,300,0x999999);
+	 			 
+	 			 //Obstaculos arriba
+	 			 triangle(buffer, 200,0,400,350,400,0,0x999999);
+	 			 
+	 			 //plataforma de aterrizaje
+	 			 rectfill(buffer,600,250,705,200,0x999999);
+	 			 
+	 			 //Iniciar el juego
+	  			 if(iniciar == false){
+				 			rectfill(buffer,20,250,100,240,0x999999);textout_centre_ex(buffer,font,"PRESIONA ESPACIO PARA INICIAR EL NIVEL",200,80,0xFFFFFF,0x000000);
+							 }	
 				 }
 	 }
 	 
@@ -224,13 +243,23 @@ bool gameOver(float cx,float cy,BITMAP *buffer,int numLevel,bool iniciar){
 	 return false;
 	 }
 bool aterrizar(float cx,float cy,float vx,float vy,BITMAP *buffer,int numLevel,bool iniciar){
-	 if(cy+20 >= 450 && cx-20 >= 610 && cx+20 <=710){
+	 if(numLevel == 0){
+	 			 if(cy+20 >= 450 && cx-20 >= 610 && cx+20 <=710){
 	 		  if(vy <= 4.7){
 			  		return true;
 					}else {
 						  colision(cx,cy,buffer,numLevel,iniciar);
 						  }
 			  }
+				  } else if(numLevel == 1){
+				  		 if(cy+20 >= 205 && cx-20 >= 600 && cx+20 <=705){
+	 		  if(vy <= 4.7){
+			  		return true;
+					}else {
+						  colision(cx,cy,buffer,numLevel,iniciar);
+						  }
+			  }
+						   }
 	 return false;
 	 
 	 }
@@ -241,37 +270,45 @@ bool choque(float x1,float y1,float x2,float y2,float p1x,float p1y,float p2x,fl
 	 float b = y1-m*x1;
 	 //ec de una recta es y=mx+b
 	 if(m>0){
-	 		 if(x1<=p1x && p1x >= x2){
-			 			if(p2y >= m*p1x+b) return true;
-						 }
-			 else{
-			 	  if(p1x <= x1 && x1 <= p2x)
+	 		 if(x1 <= p1x && p1x <= x2){
+			 			if(p2y >= m*p1x + b) return true;
+						 }else{
+			 	  if(p1x <= x1 && x1 <= p2x){
 			 	  		 if(y1 <= p2y) return true;
-				  }			 		 		 
-			  }else if(m<0){
-	 		 if(x1<=p2x && p2x >= x2){
-			 			if(p2y >= m*p2x+b) return true;
+  	   		  			 	   	  	   		  }
+						 	   }		 
+		     }else if(m<0){
+	 		 if(x1 <= p2x && p2x >= x2){
+			 			if(p2y >= m*p2x + b) return true;
 						 }
 			 else{
-			 	  if(p1x <= x2 && x2 <= p2x)
+			 	  if(p1x <= x2 && x2 <= p2x){
 			 	  		 if(y2 <= p2y) return true;
+						 	   	  	   		  }
 				  }			 		 		 
 			  }
 	 return false;		  		  
 	 }
 	 
 bool choqueNave(int numLevel,float cx,float cy){
-	 float r1x = cx-20, r1y = cy-15;
+	 //pata izquierda
+	 float r1x = cx-20, r1y = cy;
 	 float r2x = cx+20, r2y = cy+20;
+	 //pata derecha
+	 float p1x = cx-10, p1y = cy;
+	 float p2x = cx+20, p2y = cy+20;
+	 //cabeza
+	 float q1x = cx-10, q1y = cy-15;
+	 float q2x = cx+10, q2y = cy;
 	 
-	 if(numLevel == 2){
-	 			 if(choque(110,100,300,500,r1x,r1y,r2x,r2y) == true){
-				 	return true;										
-					 }
-				 if(choque(400,500,300,500,r1x,r1y,r2x,r2y) == true){
-				 	return true;										
-					 }	 
-				  }
+	 
+	 
+	 if(numLevel == 1){
+	 			 if(choque(110,100,300,500,r1x,r1y,r2x,r2y) == true || choque(110,100,300,500,p1x,p1y,p2x,p2y) == true || choque(110,100,300,500,q1x,q1y,q2x,q2y) == true) return true;										
+	 			 if(choque(620,500,700,500,r1x,r1y,r2x,r2y) == true || choque(620,500,700,500,p1x,p1y,p2x,p2y) == true || choque(620,500,700,500,q1x,q1y,q2x,q2y) == true) return true;										
+				 if(choque(500,700,900,700,r1x,r1y,r2x,r2y) == true || choque(500,700,900,700,p1x,p1y,p2x,p2y) == true || choque(500,700,900,700,q1x,q1y,q2x,q2y) == true) return true;										
+
+				}			  
 	 return false;
 	 }
 	 
