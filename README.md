@@ -5,7 +5,7 @@
 4. [Colaboración](#Colaboración)
 ### Información General
 ***
-Space Dasher es un juego basado en la guía de un youtuber que enseña a usr allegro, es parecido, pero se diferencian en ciertas partes.
+Space Dasher es un juego basado en la guía de un youtuber que enseña a usar allegro, es parecido, pero se diferencian en ciertas partes.
 
 Space Dasher tiene lugar en el año 2800, la civilización entró en un colapso porque hemos destruido nuestro hermoso planeta tierra, ahora vivimos en una estación espacial donde pronto se nos acabará los recursos, y el oxígeno, tenemos que buscar otro lugar para vivir.
 
