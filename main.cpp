@@ -15,18 +15,29 @@ bool gameOver(float,float,BITMAP*,int,bool);//Game over
 bool aterrizar(float,float,float,float,BITMAP*,int,bool);//Funcion para aterrizar
 bool choque(float,float,float,float,float,float,float,float);//Hace la que la nave choque con los obstaculos
 bool choqueNave(int,float,float);//Hace que la nave choque
-
+void botonClose(){
+	 int result = alert("Salir","Seguro que quieres salir?", NULL,"&SI","&No",'s','n');
+	 bool comprobar = false;
+	 if(result == 1){
+	 		   comprobar = true;
+				} else {
+				  	   comprobar = false;
+						 }
+	 }	
 
 
 
 
 int main() {
 	
-	int depth, res;
+	int depth, res,des;
+	bool enable = true;
 	allegro_init();
+	
 	depth = desktop_color_depth();
 	if (depth == 0) depth = 64;//Selecciona 64 bits(en tal caso ser 64 bits)
 	set_color_depth(depth);
+	set_window_close_button(botonClose());
 	res = set_gfx_mode(GFX_AUTODETECT_WINDOWED, 740, 500, 0, 0);/*Es el tamanio
 		  											 	  	 	de la ventana*/	 	
 	if (res != 0) {												
@@ -54,9 +65,6 @@ int main() {
 		clear_to_color(buffer,0x000000);
 		crearNivel(numNivel,buffer,iniciar);
 		
-		if(key[KEY_ESC]){//Esto intenta de finalizar el juego(hay que probarlo en otra pc)
-						 exit(-1);
-						 }
 		
 		if(key[KEY_SPACE]){//Esto inicia el juego si se le da al espacio
 						   iniciar = true;
@@ -88,7 +96,9 @@ int main() {
   		rest(10);//Hace un reset para que no se llene la memoria				   
   						   
 	}
+	
 	clear_keybuf();//Limpia todo
+	exit(0);
 	return 0;
 }
 END_OF_MAIN()
@@ -312,5 +322,5 @@ bool choqueNave(int numLevel,float cx,float cy){
 	 return false;
 	 }
 	 
-	 
+ 
 	 

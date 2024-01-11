@@ -1,24 +1,24 @@
 [Project]
 FileName=Proyecto 1.dev
-Name=Proyecto 1
-UnitCount=1
+Name=Space Dasher
+UnitCount=2
 Type=0
 Ver=1
 ObjFiles=
 Includes=
 Libs=
-PrivateResource=
+PrivateResource=Proyecto_1_private.rc
 ResourceIncludes=
 MakeIncludes=
-Compiler=-DALLEGRO_STATICLINK
-CppCompiler=-DALLEGRO_STATICLINK
-Linker=-lalleg_s -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lole32 -ldinput -lddraw -ldxguid -lwinmm -ldsound
+Compiler=-DALLEGRO_STATICLINK_@@_
+CppCompiler=-DALLEGRO_STATICLINK_@@_
+Linker=-lalleg_s -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lole32 -ldinput -lddraw -ldxguid -lwinmm -ldsound_@@_
 IsCpp=1
 Icon=Proyecto 1.ico
 ExeOutput=
 ObjectOutput=
 OverrideOutput=0
-OverrideOutputName=
+OverrideOutputName=Proyecto 1.exe
 HostApplication=
 Folders=
 CommandLine=
@@ -27,7 +27,7 @@ CustomMakefile=
 IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
-CompilerSettings=
+CompilerSettings=0000000000000000000000
 
 [Unit1]
 FileName=main.cpp
@@ -56,4 +56,13 @@ OriginalFilename=
 ProductName=
 ProductVersion=
 AutoIncBuildNr=0
+
+[Unit2]
+FileName=Space Dasher.rc
+Folder=Resources
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
 
