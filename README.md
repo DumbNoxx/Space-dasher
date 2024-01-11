@@ -1,4 +1,4 @@
-## Table of Contents
+## Tabla de Contenidos
 1. [Información General](#Información-General)
 2. [Tecnologías](#Tecnologías)
 3. [Instalación](#Instalación)
