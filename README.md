@@ -1,8 +1,8 @@
 ## Table of Contents
-1. [Información General](#Informacion-General)
-2. [Tecnologías](#Tecnologias)
-3. [Instalación](#instalacion)
-4. [Colaboración](#colaboracion)
+1. [Información General](#Información-General)
+2. [Tecnologías](#Tecnologías)
+3. [Instalación](#Instalación)
+4. [Colaboración](#Colaboración)
 ### Información General
 ***
 Space Dasher es un juego basado en la guía de un youtuber que enseña a usr allegro, es parecido, pero se diferencian en ciertas partes.
