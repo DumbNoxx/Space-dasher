@@ -28,6 +28,6 @@ Más información: Descarga el instalador de Space Dasher que está en el ```rel
 ## Colaboración
 ***
 Puedes colaborarme con algunas de estas cosas:
-> Mandarme un correo electrónico cuando encuentres algún bug o dejarme un mensaje en la repo
-> Puedes ayudarme dándole Star al repositorio de GitHub
-> Prueba el juego y dime si te gusto
+> -Mandarme un correo electrónico cuando encuentres algún bug o dejarme un mensaje en la repo
+> -Puedes ayudarme dándole Star al repositorio de GitHub
+> -Prueba el juego y dime si te gusto
