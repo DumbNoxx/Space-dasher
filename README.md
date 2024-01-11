@@ -11,7 +11,7 @@ Space Dasher tiene lugar en el año 2800, la civilización entró en un colapso 
 ***
 Ahí es donde entrás tú, tienes que pasar por los diferentes niveles para encontrar el planeta adecuado para vivir, y así la raza humana no se extingan.
 ### Capturas
-![Space Dasher](https://pin.it/493H3gwE6)
+![Space Dasher](https://media.discordapp.net/attachments/1181019286966374514/1194979899673411656/Screenshot_20240111-080149.jpg?ex=65b252c1&is=659fddc1&hm=95fc3d8a0d071c1a6925762932352b2c195fcaa1af4538449a4d2cb88bc052d9&)
 ## Tecnologías
 ***
 Una lista de tecnologías usadas con el proyecto:
