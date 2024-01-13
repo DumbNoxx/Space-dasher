@@ -31,3 +31,9 @@ Puedes colaborarme con algunas de estas cosas:
 > -Mandarme un correo electrónico cuando encuentres algún bug o dejarme un mensaje en la repo
 > -Puedes ayudarme dándole Star al repositorio de GitHub
 > -Prueba el juego y dime si te gusto
+### Beta Testers
+<html>
+<ul>
+<li>Bamoki<br>
+Su GitHub: https://github.com/Bamoki</li></ul>
+</html>
