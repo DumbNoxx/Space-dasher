@@ -10,6 +10,11 @@ Space Dasher es un juego basado en la guía de un youtuber que enseña a usar al
 Space Dasher tiene lugar en el año 2800, la civilización entró en un colapso porque hemos destruido nuestro hermoso planeta tierra, ahora vivimos en una estación espacial donde pronto se nos acabará los recursos, y el oxígeno, tenemos que buscar otro lugar para vivir.
 
 Ahí es donde entrás tú, tienes que pasar por los diferentes niveles para encontrar el planeta adecuado para vivir, y así la raza humana no se extingan.
+***
+###Beta Testers
+<ul>
+<li>Bamoki<br>
+Su GitHub: https://github.com/Bamoki</li></ul>
 ### Capturas
 ![Space Dasher](https://media.discordapp.net/attachments/1181019286966374514/1194979899673411656/Screenshot_20240111-080149.jpg?ex=65b252c1&is=659fddc1&hm=95fc3d8a0d071c1a6925762932352b2c195fcaa1af4538449a4d2cb88bc052d9&)
 ## Tecnologías
